@@ -1,0 +1,138 @@
+Задача - 4.1
+import math
+
+def f(x):
+    if 0.2 <= x <= 0.9:
+        return math.sin(x)
+    else:
+        return 1
+
+# Test the function with different values of x
+test_values = [0.1, 0.3, 0.5, 0.9, 1.0]
+for x in test_values:
+    print(f"f({x}) = {f(x)}")
+Задача - 7.2
+a = float(input("Введите первое число: "))
+b = float(input("Введите второе число: "))
+c = float(input("Введите третье число: "))
+
+max_value = a
+if b > max_value:
+    max_value = b
+if c > max_value:
+    max_value = c
+
+min_value = a
+if b < min_value:
+    min_value = b
+if c < min_value:
+    min_value = c
+
+print(f"Наибольшее число: {max_value}")
+print(f"Наименьшее число: {min_value}")
+Задача - 5.41
+total_mass = 0.0
+
+for i in range(1, 13):
+    mass = float(input(f"Введите массу предмета {i}: "))
+    total_mass += mass
+
+print(f"Общая масса набора предметов: {total_mass}")
+Задача- 5.72
+initial_distance = 10.0  
+increase_rate = 0.10  
+
+distances = [initial_distance]
+for day in range(1, 10):
+    next_distance = distances[-1] * (1 + increase_rate)
+    distances.append(next_distance)
+
+for day in range(2, 11):
+    print(f"Пробег за {day}-й день: {distances[day-1]:.2f} км")
+
+total_distance_7_days = sum(distances[:7])
+print(f"Суммарный путь за первые 7 дней: {total_distance_7_days:.2f} км")
+Задача-6.41
+def find_two_max_min_digits(n):
+    n_str = str(n)
+    
+    
+    max1 = max2 = -1  
+    min1 = min2 = 10  
+    
+    for digit in n_str:
+        digit = int(digit)
+        
+        
+        if digit > max1:
+            max2 = max1
+            max1 = digit
+        elif digit > max2:
+            max2 = digit
+      
+        if digit < min1:
+            min2 = min1
+            min1 = digit
+        elif digit < min2:
+            min2 = digit
+
+    return (max1, max2), (min1, min2)
+
+
+n = 753968421
+max_digits, min_digits = find_two_max_min_digits(n)
+print(f"Две максимальные цифры: {max_digits}")
+print(f"Две минимальные цифры: {min_digits}")
+Задача - 6.72
+def is_sorted_by_rank(points):
+    # П
+    for i in range(len(points) - 1):
+        if points[i] < points[i + 1]:
+            return False
+    return True
+
+# Приме
+points = [70, 65, 60, 55, 50]  
+if is_sorted_by_rank(points):
+    print("Команды перечислены в соответствии с занятыми ими местами в чемпионате.")
+else:
+    print("Команды не перечислены в соответствии с занятыми ими местами в чемпионате.")
+Задача-8.41
+def generate_sequence(m, n):
+    sequence = []
+    for i in range(1, n + 1):
+        for _ in range(m):
+            sequence.append(i)
+    
+    return sequence
+
+m = 3  
+n = 5  
+sequence = generate_sequence(m, n)
+print(" ".join(map(str, sequence)))
+Задача-8.22
+data = [
+    [30, 25, 20, 35, 40, 15],  
+    [45, 20, 25, 30, 10, 35],  
+    [25, 30, 35, 40, 20, 15],  
+    [30, 20, 10, 25, 35, 40], 
+    [35, 40, 45, 20, 25, 10],  
+]
+
+
+min_students_course = min(range(len(data)), key=lambda i: sum(data[i])) + 1
+
+
+min_students_group = min(
+    ((i + 1, j + 1) for i in range(len(data)) for j in range(len(data[i]))),
+    key=lambda x: data[x[0] - 1][x[1] - 1]
+)
+
+
+min_group_each_course = [(i + 1, data[i].index(min(data[i])) + 1) for i in range(len(data))]
+
+
+print(f"На курсе {min_students_course} обучается меньше всего студентов.")
+print(f"Самая малочисленная группа - группа {min_students_group[1]} курса {min_students_group[0]}.")
+for course, group in min_group_each_course:
+    print(f"На курсе {course} самая малочисленная группа - группа {group}.")
